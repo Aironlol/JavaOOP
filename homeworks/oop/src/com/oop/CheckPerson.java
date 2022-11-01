@@ -1,11 +1,15 @@
 package com.oop;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Writer;
 import java.util.Arrays;
-// comment
+
 public interface CheckPerson {
 
-    static boolean check(Person person) {
-        boolean result = true;
+    static String check(Person person, Writer writer) throws IOException {
+//        Writer writer = new PrintWriter(System.out);
+        String result = "true";
 
         String[] validHairColor = {
                 "Black",
@@ -23,25 +27,26 @@ public interface CheckPerson {
         };
 
         if (person.getId() < 0) {
-            System.out.println("The Id value cannot be negative.");
-            result = false;
+            writer.write("The Id value cannot be negative.\n");
+            result = "false";
         }
         if ((person.getName().length() == 0) || (person.getName().length() > 30)) {
-            System.out.println("The name value can contain from 1 to 30 characters.");
-            result = false;
+            writer.write("The name value can contain from 1 to 30 characters.\n");
+            result = "false";
         }
         if (person.getAge() < 0 || person.getAge()>99) {
-            System.out.println("The age value can be from 0 to 99.");
-            result = false;
+            writer.write("The age value can be from 0 to 99.\n");
+            result = "false";
         }
         if (!Arrays.asList(validHairColor).contains(person.getHairColor())){
-            System.out.println("The hair color may be as follows: " + Arrays.toString(validHairColor));
-            result = false;
+            writer.write("The hair color may be as follows: " + Arrays.toString(validHairColor) + "\n");
+            result = "false";
         }
         if (!Arrays.asList(validEyeColor).contains(person.getEyeColor())){
-            System.out.println("The eye color may be as follows: " + Arrays.toString(validEyeColor));
-            result = false;
+            writer.write("The eye color may be as follows: " + Arrays.toString(validEyeColor) + "\n");
+            result = "false";
         }
+        writer.flush();
         return result;
     }
 }

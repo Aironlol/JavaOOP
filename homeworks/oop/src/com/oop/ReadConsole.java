@@ -1,5 +1,5 @@
 package com.oop;
-// comment
+
 public class ReadConsole {
 
     private final String string;

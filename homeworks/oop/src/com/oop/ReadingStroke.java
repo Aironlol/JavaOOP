@@ -1,7 +1,5 @@
 package com.oop;
 
-import java.lang.reflect.Field;
-// comment
 public interface ReadingStroke {
 
     static String[] readConsoleStroke(String stroke) {
